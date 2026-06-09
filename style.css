@@ -1,0 +1,364 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 10% 20%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(78, 205, 196, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(69, 105, 144, 0.05) 0%, transparent 70%);
+    z-index: -1;
+}
+
+.mbti-characters {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+}
+
+.screen {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 开始页面 */
+#start-screen {
+    text-align: center;
+    background: white;
+    border-radius: 20px;
+    padding: 50px 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-size: 80px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.description {
+    color: #888;
+    margin-bottom: 30px;
+}
+
+/* 按钮样式 */
+.btn-primary, .btn-secondary {
+    padding: 15px 40px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #f0f0f0;
+    color: #333;
+    margin-top: 30px;
+}
+
+.btn-secondary:hover {
+    background: #e0e0e0;
+}
+
+/* 测试页面 */
+#test-screen {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.progress-container {
+    margin-bottom: 30px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    width: 10%;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.question-card {
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 30px;
+    line-height: 1.4;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.option {
+    width: 100%;
+    padding: 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 15px;
+    background: white;
+    font-size: 1em;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.option:hover {
+    border-color: #667eea;
+    background: #f8f9ff;
+    transform: translateX(5px);
+}
+
+/* 结果页面 */
+#result-screen {
+    background: white;
+    border-radius: 20px;
+    padding: 50px 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.personality-type {
+    font-size: 3em;
+    font-weight: bold;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+.result-card h2 {
+    margin-bottom: 20px;
+}
+
+.result-description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.traits {
+    text-align: left;
+    margin: 30px 0;
+}
+
+.trait {
+    margin-bottom: 20px;
+}
+
+.trait-label {
+    display: block;
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.trait-bar {
+    height: 12px;
+    background: #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.trait-progress {
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: width 0.5s ease;
+}
+
+/* MBTI人物元素 */
+.character {
+    position: fixed;
+    font-size: 2em;
+    opacity: 0.8;
+    animation: float 6s ease-in-out infinite;
+    z-index: -1;
+}
+
+.character-1 { top: 10%; left: 5%; animation-delay: 0s; }
+.character-2 { top: 20%; right: 8%; animation-delay: 1s; }
+.character-3 { top: 50%; left: 3%; animation-delay: 2s; }
+.character-4 { top: 60%; right: 5%; animation-delay: 3s; }
+.character-5 { top: 80%; left: 10%; animation-delay: 4s; }
+.character-6 { top: 85%; right: 10%; animation-delay: 5s; }
+.character-7 { top: 30%; left: 2%; animation-delay: 0.5s; }
+.character-8 { top: 40%; right: 3%; animation-delay: 1.5s; }
+.character-9 { top: 70%; left: 8%; animation-delay: 2.5s; }
+.character-10 { top: 75%; right: 7%; animation-delay: 3.5s; }
+.character-11 { top: 15%; left: 12%; animation-delay: 4.5s; }
+.character-12 { top: 25%; right: 12%; animation-delay: 5.5s; }
+.character-13 { top: 45%; left: 7%; animation-delay: 0.3s; }
+.character-14 { top: 55%; right: 8%; animation-delay: 1.3s; }
+.character-15 { top: 65%; left: 4%; animation-delay: 2.3s; }
+.character-16 { top: 90%; right: 4%; animation-delay: 3.3s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
+/* 色彩装饰 */
+.color-dot {
+    position: fixed;
+    border-radius: 50%;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.dot-1 { width: 100px; height: 100px; background: #ff6b6b; top: 15%; left: 15%; }
+.dot-2 { width: 80px; height: 80px; background: #4ecdc4; top: 25%; right: 20%; }
+.dot-3 { width: 120px; height: 120px; background: #45b7d1; bottom: 20%; left: 20%; }
+.dot-4 { width: 60px; height: 60px; background: #96ceb4; bottom: 30%; right: 15%; }
+.dot-5 { width: 90px; height: 90px; background: #ffeaa7; top: 40%; left: 10%; }
+.dot-6 { width: 70px; height: 70px; background: #dfe6e9; top: 60%; right: 10%; }
+
+/* 更多装饰元素 */
+.gradient-circle {
+    position: fixed;
+    border-radius: 50%;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+.circle-1 {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, #ff6b6b, #feca57);
+    top: -100px;
+    left: -100px;
+}
+
+.circle-2 {
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(135deg, #4ecdc4, #44bd32);
+    bottom: -80px;
+    right: -80px;
+}
+
+.circle-3 {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 浮动的MBTI类型标签 */
+.floating-tags {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.tag {
+    position: absolute;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: bold;
+    opacity: 0.6;
+    animation: tagFloat 8s ease-in-out infinite;
+}
+
+.tag-1 { background: #ff6b6b; color: white; top: 5%; left: 15%; animation-delay: 0s; }
+.tag-2 { background: #4ecdc4; color: white; top: 15%; right: 15%; animation-delay: 1s; }
+.tag-3 { background: #45b7d1; color: white; top: 25%; left: 10%; animation-delay: 2s; }
+.tag-4 { background: #96ceb4; color: white; top: 35%; right: 10%; animation-delay: 3s; }
+.tag-5 { background: #ffeaa7; color: #333; top: 45%; left: 5%; animation-delay: 4s; }
+.tag-6 { background: #dfe6e9; color: #333; top: 55%; right: 5%; animation-delay: 5s; }
+.tag-7 { background: #a29bfe; color: white; top: 65%; left: 12%; animation-delay: 6s; }
+.tag-8 { background: #fd79a8; color: white; top: 75%; right: 12%; animation-delay: 7s; }
+
+@keyframes tagFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(3deg); }
+}
